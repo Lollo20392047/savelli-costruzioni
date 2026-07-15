@@ -131,12 +131,10 @@
     .rome-scene{position:relative;min-height:clamp(34rem,64vw,52rem);overflow:hidden;display:grid;align-items:start;background:#100f0d;border-bottom:1px solid var(--line);isolation:isolate}
     .rome-scene::before{content:"";position:absolute;z-index:-1;inset:-30% -10%;background:linear-gradient(115deg,transparent 28%,rgba(184,154,99,var(--rome-light,.12)) 49%,transparent 68%);transform:translate3d(var(--rome-light-x,-12%),0,0);will-change:transform}
     .rome-scene::after{content:"ROMA";position:absolute;z-index:-2;right:-.06em;top:-.28em;color:transparent;-webkit-text-stroke:1px rgba(214,189,139,.08);font-family:var(--serif);font-size:min(37vw,33rem);line-height:1;letter-spacing:-.08em}
-    .rome-content{position:relative;z-index:2;padding-top:clamp(4rem,8vw,8rem)}
-    .rome-copy{position:relative;z-index:3;max-width:50rem}
+    .rome-content{position:relative;z-index:2;padding-top:clamp(3.5rem,6vw,6rem)}
+    .rome-copy{position:relative;z-index:3;max-width:31rem}
     .rome-copy .eyebrow{margin-bottom:1rem}
-    .rome-title{max-width:9ch;font-size:clamp(3.5rem,8.6vw,8.5rem)}
-    .rome-title em{display:block;color:var(--gold-light);font-weight:400}
-    .rome-note{max-width:31rem;margin:1.5rem 0 0;color:rgba(238,233,223,.62);font-size:clamp(.92rem,1.5vw,1.1rem)}
+    .rome-note{max-width:31rem;margin:0;color:rgba(238,233,223,.62);font-size:clamp(.92rem,1.5vw,1.1rem)}
     .colosseum-wrap{position:absolute;z-index:1;left:50%;bottom:-1.5rem;width:min(112rem,118vw);transform:translateX(-50%);pointer-events:none}
     .js .colosseum-wrap.reveal{transform:translate(-50%,3.4rem) scale(.985)}
     .js .colosseum-wrap.reveal.is-visible{transform:translateX(-50%)}
@@ -152,7 +150,8 @@
     .rome-bay-inner{fill:none;stroke:rgba(214,189,139,.24);stroke-width:.72;vector-effect:non-scaling-stroke}
     .colosseum-wrap.is-visible .colosseum-arch{opacity:1}
     .colosseum-arches use:nth-child(3n+2){transition-delay:.62s}.colosseum-arches use:nth-child(3n){transition-delay:.78s}
-    .rome-caption{position:absolute;right:var(--pad);bottom:1.2rem;color:rgba(214,189,139,.65);font-size:.58rem;font-weight:650;letter-spacing:.2em;text-transform:uppercase}
+    .colosseum-sill-shadow{fill:none;stroke:rgba(0,0,0,.78);stroke-width:8;vector-effect:non-scaling-stroke}
+    .colosseum-sill{fill:none;stroke:rgba(214,189,139,.82);stroke-width:2.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 4px 2px rgba(0,0,0,.8))}
 
     /* About */
     .about{padding:clamp(6rem,13vw,13rem) 0;background:var(--ivory);color:var(--ink)}
@@ -288,7 +287,7 @@
       .hero-seal-wrap{min-height:23rem}.hero-seal{width:min(72vw,18rem)}
       .scroll-note{display:none}.orbit-label{right:.4rem}
       .service-list{grid-template-columns:1fr 1fr}.service-list li{min-height:4.7rem;border-bottom:1px solid var(--line)}.service-list li:nth-child(2){border-right:0}.service-list li:nth-child(n+3){border-bottom:0}
-      .rome-scene{min-height:40rem}.rome-title{font-size:clamp(3.4rem,16vw,5.4rem)}.rome-note{max-width:20rem}.colosseum-wrap{width:175vw;bottom:1.5rem}.rome-caption{display:none}
+      .rome-scene{min-height:40rem}.rome-note{max-width:20rem}.colosseum-wrap{width:175vw;bottom:1.5rem}
       .about-detail{grid-template-columns:1fr}.about-statement{font-size:clamp(2.5rem,12vw,4.2rem)}
       .service-card{grid-template-columns:2.5rem 1fr 1.4rem;gap:1rem}.service-card p{grid-column:2 / 4}.service-card:hover{padding-inline:0;background:transparent}
       .project-head{grid-template-columns:1fr;gap:1.5rem}.gallery-three{grid-template-columns:1fr}.gallery-item button{min-height:27rem}
@@ -355,11 +354,10 @@
       <ul class="service-list shell"><li>Costruzioni</li><li>Ristrutturazioni</li><li>Locali commerciali</li><li>Impianti e finiture</li></ul>
     </aside>
 
-    <section class="rome-scene" aria-labelledby="rome-title">
+    <section class="rome-scene" aria-label="Omaggio architettonico a Roma">
       <div class="shell rome-content">
         <div class="rome-copy reveal">
           <p class="eyebrow">Roma · Materia e visione</p>
-          <h2 class="display rome-title" id="rome-title">La storia prende <em>nuova forma.</em></h2>
           <p class="rome-note">Un omaggio alla città in cui antico e contemporaneo continuano a costruire lo stesso paesaggio.</p>
         </div>
       </div>
@@ -370,9 +368,9 @@
             <radialGradient id="colosseum-wash" cx="42%" cy="18%" r="74%"><stop offset="0" stop-color="#b89a63" stop-opacity=".16"/><stop offset=".58" stop-color="#b89a63" stop-opacity=".035"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
             <linearGradient id="colosseum-void" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#020201"/><stop offset=".72" stop-color="#080705"/><stop offset="1" stop-color="#13100b"/></linearGradient>
             <g id="rome-bay">
-              <path class="rome-bay-void" d="M3 68V28C3 11 13 1 27 1s24 10 24 27v40Z"/>
-              <path class="rome-bay-rim" d="M3 68V28C3 11 13 1 27 1s24 10 24 27v40"/>
-              <path class="rome-bay-inner" d="M9 68V31C9 18 16 10 27 10s18 8 18 21v37"/>
+              <path class="rome-bay-void" d="M3 64V28C3 11 13 1 27 1s24 10 24 27v36Z"/>
+              <path class="rome-bay-rim" d="M3 64V28C3 11 13 1 27 1s24 10 24 27v36"/>
+              <path class="rome-bay-inner" d="M9 64V31C9 18 16 10 27 10s18 8 18 21v33"/>
             </g>
           </defs>
           <path class="colosseum-mass" d="M80 474V201Q302 86 560 82q190-3 326 43v42h168l72 45v262Z"/>
@@ -384,9 +382,10 @@
             <use class="colosseum-arch" href="#rome-bay" transform="translate(132 230) scale(.94)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(211 207) scale(.97)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(293 191)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(378 183) scale(1.02)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(466 181) scale(1.03)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(556 184) scale(1.03)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(646 200) scale(1.03)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(736 208)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(824 222) scale(.98)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(910 229) scale(.96)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(1000 230) scale(.94)"/>
             <use class="colosseum-arch" href="#rome-bay" transform="translate(117 315) scale(1.06)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(207 301) scale(1.08)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(300 290) scale(1.1)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(396 284) scale(1.11)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(494 282) scale(1.12)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(594 290) scale(1.12)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(694 299) scale(1.11)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(793 310) scale(1.1)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(892 315) scale(1.08)"/><use class="colosseum-arch" href="#rome-bay" transform="translate(991 316) scale(1.06)"/>
           </g>
+          <path class="colosseum-sill-shadow" transform="translate(0 5)" d="M80 229q251-96 519-84 163 7 287 48l168 1 72 42M80 310q258-70 529-59 151 6 277 39h168l72 21M80 392q262-43 535-35 151 4 271 27h168l72 7"/>
+          <path class="colosseum-sill" d="M80 229q251-96 519-84 163 7 287 48l168 1 72 42M80 310q258-70 529-59 151 6 277 39h168l72 21M80 392q262-43 535-35 151 4 271 27h168l72 7"/>
         </svg>
       </div>
-      <span class="rome-caption">Colosseo · Roma</span>
     </section>
 
     <section class="about" id="azienda" aria-labelledby="about-title">
