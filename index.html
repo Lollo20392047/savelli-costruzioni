@@ -438,7 +438,7 @@
       <p class="whatsapp-copy">Scrivici su WhatsApp oppure salva Savelli tra i tuoi contatti.</p>
       <div class="whatsapp-actions">
         <a class="whatsapp-action whatsapp-action-primary" href="https://wa.me/393792524635?text=Buongiorno%20Savelli%2C%20vorrei%20parlarvi%20del%20mio%20progetto." target="_blank" rel="noopener">Apri WhatsApp <span aria-hidden="true">↗</span></a>
-        <button class="whatsapp-action save-contact" type="button">Salva il contatto <span aria-hidden="true">↓</span></button>
+        <a class="whatsapp-action save-contact" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0D%0AVERSION%3A3.0%0D%0AFN%3ASavelli%20Costruzioni%20%26%20Ristrutturazioni%0D%0AORG%3ASavelli%20Costruzioni%20%26%20Ristrutturazioni%0D%0ATEL%3BTYPE%3DCELL%2CWHATSAPP%3A%2B393792524635%0D%0ATEL%3BTYPE%3DCELL%3A%2B393927099533%0D%0AURL%3Ahttps%3A%2F%2Fsavelli-costruzioni.vercel.app%2F%0D%0AEND%3AVCARD" download="Savelli-Costruzioni.vcf">Salva il contatto <span aria-hidden="true">↓</span></a>
       </div>
       <div class="whatsapp-numbers"><a href="tel:+393792524635">+39 379 2524635 · WhatsApp</a><a href="tel:+393927099533">+39 392 7099533</a></div>
     </section>
@@ -547,7 +547,6 @@
     const whatsappButton=document.querySelector('.whatsapp-fab');
     const whatsappPanel=document.querySelector('.whatsapp-panel');
     const whatsappClose=document.querySelector('.whatsapp-close');
-    const saveContact=document.querySelector('.save-contact');
     const closeWhatsApp=(restoreFocus=false)=>{
       whatsappPanel.classList.remove('open');
       whatsappPanel.setAttribute('aria-hidden','true');
@@ -567,13 +566,6 @@
     whatsappClose.addEventListener('click',()=>closeWhatsApp(true));
     document.addEventListener('click',event=>{if(whatsappPanel.classList.contains('open')&&!event.target.closest('.whatsapp-widget'))closeWhatsApp()});
     document.addEventListener('keydown',event=>{if(event.key==='Escape'&&whatsappPanel.classList.contains('open'))closeWhatsApp(true)});
-    saveContact.addEventListener('click',()=>{
-      const card=['BEGIN:VCARD','VERSION:3.0','FN:Savelli Costruzioni & Ristrutturazioni','ORG:Savelli Costruzioni & Ristrutturazioni','TEL;TYPE=CELL,WHATSAPP:+393792524635','TEL;TYPE=CELL:+393927099533','URL:https://savelli-costruzioni.vercel.app/','END:VCARD'].join('\r\n');
-      const url=URL.createObjectURL(new Blob([card],{type:'text/vcard;charset=utf-8'}));
-      const link=document.createElement('a');
-      link.href=url;link.download='Savelli-Costruzioni.vcf';document.body.appendChild(link);link.click();link.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1000);
-    });
   })();
   </script>
 </body>
