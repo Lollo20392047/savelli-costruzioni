@@ -130,6 +130,7 @@
     /* Rome scroll scene */
     .rome-scene{position:relative;min-height:clamp(28rem,52vw,44rem);overflow:hidden;display:grid;align-items:start;background:#100f0d;border-bottom:1px solid var(--line);isolation:isolate}
     .rome-scene::before{content:"";position:absolute;z-index:-1;inset:-30% -10%;background:linear-gradient(115deg,transparent 28%,rgba(184,154,99,var(--rome-light,.12)) 49%,transparent 68%);transform:translate3d(var(--rome-light-x,-12%),0,0);will-change:transform}
+    .rome-scene::after{content:"ROMA";position:absolute;z-index:-2;right:-.06em;top:-.28em;color:transparent;-webkit-text-stroke:1px rgba(214,189,139,.08);font-family:var(--serif);font-size:min(37vw,33rem);line-height:1;letter-spacing:-.08em}
     .colosseum-wrap{position:absolute;z-index:1;left:50%;bottom:-1.5rem;width:min(112rem,118vw);transform:translateX(-50%);pointer-events:none}
     .js .colosseum-wrap.reveal{transform:translate(-50%,3.4rem) scale(.985)}
     .js .colosseum-wrap.reveal.is-visible{transform:translateX(-50%)}
