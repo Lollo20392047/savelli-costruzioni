@@ -128,13 +128,8 @@
     .service-list li::before{content:"◆";color:var(--gold);font-size:.55rem}
 
     /* Rome scroll scene */
-    .rome-scene{position:relative;min-height:clamp(34rem,64vw,52rem);overflow:hidden;display:grid;align-items:start;background:#100f0d;border-bottom:1px solid var(--line);isolation:isolate}
+    .rome-scene{position:relative;min-height:clamp(28rem,52vw,44rem);overflow:hidden;display:grid;align-items:start;background:#100f0d;border-bottom:1px solid var(--line);isolation:isolate}
     .rome-scene::before{content:"";position:absolute;z-index:-1;inset:-30% -10%;background:linear-gradient(115deg,transparent 28%,rgba(184,154,99,var(--rome-light,.12)) 49%,transparent 68%);transform:translate3d(var(--rome-light-x,-12%),0,0);will-change:transform}
-    .rome-scene::after{content:"ROMA";position:absolute;z-index:-2;right:-.06em;top:-.28em;color:transparent;-webkit-text-stroke:1px rgba(214,189,139,.08);font-family:var(--serif);font-size:min(37vw,33rem);line-height:1;letter-spacing:-.08em}
-    .rome-content{position:relative;z-index:2;padding-top:clamp(3.5rem,6vw,6rem)}
-    .rome-copy{position:relative;z-index:3;max-width:31rem}
-    .rome-copy .eyebrow{margin-bottom:1rem}
-    .rome-note{max-width:31rem;margin:0;color:rgba(238,233,223,.62);font-size:clamp(.92rem,1.5vw,1.1rem)}
     .colosseum-wrap{position:absolute;z-index:1;left:50%;bottom:-1.5rem;width:min(112rem,118vw);transform:translateX(-50%);pointer-events:none}
     .js .colosseum-wrap.reveal{transform:translate(-50%,3.4rem) scale(.985)}
     .js .colosseum-wrap.reveal.is-visible{transform:translateX(-50%)}
@@ -287,7 +282,7 @@
       .hero-seal-wrap{min-height:23rem}.hero-seal{width:min(72vw,18rem)}
       .scroll-note{display:none}.orbit-label{right:.4rem}
       .service-list{grid-template-columns:1fr 1fr}.service-list li{min-height:4.7rem;border-bottom:1px solid var(--line)}.service-list li:nth-child(2){border-right:0}.service-list li:nth-child(n+3){border-bottom:0}
-      .rome-scene{min-height:40rem}.rome-note{max-width:20rem}.colosseum-wrap{width:175vw;bottom:1.5rem}
+      .rome-scene{min-height:31rem}.colosseum-wrap{width:195vw;bottom:4rem}
       .about-detail{grid-template-columns:1fr}.about-statement{font-size:clamp(2.5rem,12vw,4.2rem)}
       .service-card{grid-template-columns:2.5rem 1fr 1.4rem;gap:1rem}.service-card p{grid-column:2 / 4}.service-card:hover{padding-inline:0;background:transparent}
       .project-head{grid-template-columns:1fr;gap:1.5rem}.gallery-three{grid-template-columns:1fr}.gallery-item button{min-height:27rem}
@@ -355,12 +350,6 @@
     </aside>
 
     <section class="rome-scene" aria-label="Omaggio architettonico a Roma">
-      <div class="shell rome-content">
-        <div class="rome-copy reveal">
-          <p class="eyebrow">Roma · Materia e visione</p>
-          <p class="rome-note">Un omaggio alla città in cui antico e contemporaneo continuano a costruire lo stesso paesaggio.</p>
-        </div>
-      </div>
       <div class="colosseum-wrap reveal" aria-hidden="true">
         <svg class="colosseum" viewBox="0 0 1200 540" role="img" aria-label="Illustrazione animata del Colosseo">
           <defs>
