@@ -127,12 +127,27 @@
     .service-list li:last-child{border-right:0}
     .service-list li::before{content:"◆";color:var(--gold);font-size:.55rem}
 
-    /* Cinematic scroll band */
-    .kinetic-band{position:relative;overflow:hidden;padding:clamp(2.3rem,5vw,4.5rem) 0;background:var(--gold);color:var(--ink);border-bottom:1px solid rgba(10,10,9,.2)}
-    .kinetic-band::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:rgba(10,10,9,.25)}
-    .kinetic-track{display:flex;width:max-content;gap:2rem;align-items:center;white-space:nowrap;font-family:var(--serif);font-size:clamp(3rem,8vw,8.5rem);font-weight:400;line-height:.85;letter-spacing:-.045em;text-transform:uppercase;transform:translate3d(0,0,0);will-change:transform}
-    .kinetic-track span{display:inline-flex;align-items:center;gap:2rem}
-    .kinetic-track span::after{content:"◆";font-family:var(--sans);font-size:.16em}
+    /* Rome scroll scene */
+    .rome-scene{position:relative;min-height:clamp(34rem,64vw,52rem);overflow:hidden;display:grid;align-items:start;background:#100f0d;border-bottom:1px solid var(--line);isolation:isolate}
+    .rome-scene::before{content:"";position:absolute;z-index:-1;inset:-30% -10%;background:linear-gradient(115deg,transparent 28%,rgba(184,154,99,var(--rome-light,.12)) 49%,transparent 68%);transform:translate3d(var(--rome-light-x,-12%),0,0);will-change:transform}
+    .rome-scene::after{content:"ROMA";position:absolute;z-index:-2;right:-.06em;top:-.28em;color:transparent;-webkit-text-stroke:1px rgba(214,189,139,.08);font-family:var(--serif);font-size:min(37vw,33rem);line-height:1;letter-spacing:-.08em}
+    .rome-content{position:relative;z-index:2;padding-top:clamp(4rem,8vw,8rem)}
+    .rome-copy{position:relative;z-index:3;max-width:50rem}
+    .rome-copy .eyebrow{margin-bottom:1rem}
+    .rome-title{max-width:9ch;font-size:clamp(3.5rem,8.6vw,8.5rem)}
+    .rome-title em{display:block;color:var(--gold-light);font-weight:400}
+    .rome-note{max-width:31rem;margin:1.5rem 0 0;color:rgba(238,233,223,.62);font-size:clamp(.92rem,1.5vw,1.1rem)}
+    .colosseum-wrap{position:absolute;z-index:1;left:50%;bottom:-1.5rem;width:min(112rem,118vw);transform:translateX(-50%);pointer-events:none}
+    .js .colosseum-wrap.reveal{transform:translate(-50%,3.4rem) scale(.985)}
+    .js .colosseum-wrap.reveal.is-visible{transform:translateX(-50%)}
+    .colosseum{width:100%;height:auto;overflow:visible;transform:translate3d(0,var(--rome-y,0),0);filter:drop-shadow(0 2.5rem 4rem rgba(0,0,0,.58));will-change:transform}
+    .colosseum-mass{fill:url(#colosseum-mass);stroke:rgba(214,189,139,.42);stroke-width:2}
+    .colosseum-line{fill:none;stroke:var(--gold-light);stroke-width:2.2;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.2,.7,.2,1)}
+    .colosseum-wrap.is-visible .colosseum-line{stroke-dashoffset:0}
+    .colosseum-arch{fill:rgba(4,4,3,.88);stroke:rgba(214,189,139,.74);stroke-width:1.5;vector-effect:non-scaling-stroke;opacity:0;transition:opacity .65s ease .45s}
+    .colosseum-wrap.is-visible .colosseum-arch{opacity:1}
+    .colosseum-arches use:nth-child(3n+2){transition-delay:.62s}.colosseum-arches use:nth-child(3n){transition-delay:.78s}
+    .rome-caption{position:absolute;right:var(--pad);bottom:1.2rem;color:rgba(214,189,139,.65);font-size:.58rem;font-weight:650;letter-spacing:.2em;text-transform:uppercase}
 
     /* About */
     .about{padding:clamp(6rem,13vw,13rem) 0;background:var(--ivory);color:var(--ink)}
@@ -263,6 +278,7 @@
       .hero-seal-wrap{min-height:23rem}.hero-seal{width:min(72vw,18rem)}
       .scroll-note{display:none}.orbit-label{right:.4rem}
       .service-list{grid-template-columns:1fr 1fr}.service-list li{min-height:4.7rem;border-bottom:1px solid var(--line)}.service-list li:nth-child(2){border-right:0}.service-list li:nth-child(n+3){border-bottom:0}
+      .rome-scene{min-height:40rem}.rome-title{font-size:clamp(3.4rem,16vw,5.4rem)}.rome-note{max-width:20rem}.colosseum-wrap{width:175vw;bottom:1.5rem}.rome-caption{display:none}
       .about-detail{grid-template-columns:1fr}.about-statement{font-size:clamp(2.5rem,12vw,4.2rem)}
       .service-card{grid-template-columns:2.5rem 1fr 1.4rem;gap:1rem}.service-card p{grid-column:2 / 4}.service-card:hover{padding-inline:0;background:transparent}
       .project-head{grid-template-columns:1fr;gap:1.5rem}.gallery-three{grid-template-columns:1fr}.gallery-item button{min-height:27rem}
@@ -273,8 +289,8 @@
     }
     @media (max-width:370px){.brand-copy strong{font-size:.82rem}.hero-actions .btn{width:100%}.phone-link{font-size:1.15rem}}
     @media (hover:none){.gallery-item:hover img{--gallery-scale:1.055;filter:none}}
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.js .reveal{opacity:1;clip-path:none;transform:none}.kinetic-track,.gallery-item img{transform:none!important}}
-    @media print{.site-header,.mobile-panel,.hero-actions,.scroll-note,.service-strip,.kinetic-band,.scroll-progress,.whatsapp-widget,.lightbox,.footer-top{display:none!important}body{background:#fff;color:#000}.hero,.about,.services,.projects,.process,.contact{min-height:auto;padding:2rem 0;background:#fff!important;color:#000!important}.hero::before,.hero-gridline,.contact::before{display:none}.hero-seal-wrap{min-height:auto}.hero-seal{width:10rem}.section-copy,.project-summary,.service-card p,.contact-panel>p{color:#333}.gallery-item{break-inside:avoid}.gallery-item button{min-height:12rem}.js .reveal{opacity:1;clip-path:none;transform:none}.btn{border-color:#000;color:#000}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.js .reveal{opacity:1;clip-path:none;transform:none}.colosseum,.gallery-item img{transform:none!important}.colosseum-line{stroke-dashoffset:0}.colosseum-arch{opacity:1}}
+    @media print{.site-header,.mobile-panel,.hero-actions,.scroll-note,.service-strip,.rome-scene,.scroll-progress,.whatsapp-widget,.lightbox,.footer-top{display:none!important}body{background:#fff;color:#000}.hero,.about,.services,.projects,.process,.contact{min-height:auto;padding:2rem 0;background:#fff!important;color:#000!important}.hero::before,.hero-gridline,.contact::before{display:none}.hero-seal-wrap{min-height:auto}.hero-seal{width:10rem}.section-copy,.project-summary,.service-card p,.contact-panel>p{color:#333}.gallery-item{break-inside:avoid}.gallery-item button{min-height:12rem}.js .reveal{opacity:1;clip-path:none;transform:none}.btn{border-color:#000;color:#000}}
   </style>
 </head>
 <body>
@@ -329,8 +345,30 @@
       <ul class="service-list shell"><li>Costruzioni</li><li>Ristrutturazioni</li><li>Locali commerciali</li><li>Impianti e finiture</li></ul>
     </aside>
 
-    <section class="kinetic-band" aria-label="Costruiamo, rinnoviamo, realizziamo">
-      <div class="kinetic-track" aria-hidden="true"><span>Costruiamo</span><span>Rinnoviamo</span><span>Realizziamo</span><span>Costruiamo</span><span>Rinnoviamo</span><span>Realizziamo</span></div>
+    <section class="rome-scene" aria-labelledby="rome-title">
+      <div class="shell rome-content">
+        <div class="rome-copy reveal">
+          <p class="eyebrow">Roma · Materia e visione</p>
+          <h2 class="display rome-title" id="rome-title">La storia prende <em>nuova forma.</em></h2>
+          <p class="rome-note">Un omaggio alla città in cui antico e contemporaneo continuano a costruire lo stesso paesaggio.</p>
+        </div>
+      </div>
+      <div class="colosseum-wrap reveal" aria-hidden="true">
+        <svg class="colosseum" viewBox="0 0 1200 540" role="img" aria-label="Illustrazione animata del Colosseo">
+          <defs>
+            <linearGradient id="colosseum-mass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b261d"/><stop offset="1" stop-color="#15130f"/></linearGradient>
+            <path id="rome-arch" d="M0 64V27C0 10 12 0 27 0s27 10 27 27v37Z"/>
+          </defs>
+          <path class="colosseum-mass" d="M80 474V201Q302 86 560 82q190-3 326 43v42h168l72 45v262Z"/>
+          <path class="colosseum-line" pathLength="1" d="M80 474V201Q302 86 560 82q190-3 326 43v42h168l72 45v262M80 229q251-96 519-84 163 7 287 48l168 1 72 42M80 310q258-70 529-59 151 6 277 39h168l72 21M80 392q262-43 535-35 151 4 271 27h168l72 7M65 475h1070"/>
+          <g class="colosseum-arches">
+            <use class="colosseum-arch" href="#rome-arch" transform="translate(176 151) scale(.74)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(235 137) scale(.76)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(297 124) scale(.78)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(362 114) scale(.8)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(430 106) scale(.81)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(500 101) scale(.82)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(572 101) scale(.82)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(644 105) scale(.81)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(714 112) scale(.8)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(782 121) scale(.78)"/>
+            <use class="colosseum-arch" href="#rome-arch" transform="translate(132 232) scale(.94)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(211 214) scale(.97)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(293 199)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(378 188) scale(1.02)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(466 181) scale(1.03)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(556 179) scale(1.03)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(646 182) scale(1.03)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(736 190)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(824 202) scale(.98)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(910 213) scale(.96)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(1000 216) scale(.94)"/>
+            <use class="colosseum-arch" href="#rome-arch" transform="translate(117 332) scale(1.06)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(207 315) scale(1.08)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(300 302) scale(1.1)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(396 293) scale(1.11)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(494 288) scale(1.12)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(594 288) scale(1.12)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(694 291) scale(1.11)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(793 297) scale(1.1)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(892 306) scale(1.08)"/><use class="colosseum-arch" href="#rome-arch" transform="translate(991 312) scale(1.06)"/>
+          </g>
+        </svg>
+      </div>
+      <span class="rome-caption">Colosseo · Roma</span>
     </section>
 
     <section class="about" id="azienda" aria-labelledby="about-title">
@@ -461,7 +499,8 @@
     const heroCopy=document.querySelector('.hero-copy');
     const heroSeal=document.querySelector('.hero-seal-wrap');
     const heroGrid=document.querySelector('.hero-gridline');
-    const kineticTrack=document.querySelector('.kinetic-track');
+    const romeScene=document.querySelector('.rome-scene');
+    const colosseum=document.querySelector('.colosseum');
     const galleryImages=[...document.querySelectorAll('.gallery-item img')];
     let motionFrame=0;
     const updateMotion=()=>{
@@ -474,7 +513,13 @@
         heroCopy.style.setProperty('--hero-y',`${heroProgress*34}px`);
         heroSeal.style.setProperty('--seal-y',`${heroProgress*-28}px`);
         heroGrid.style.setProperty('--grid-y',`${heroProgress*52}px`);
-        kineticTrack.style.transform=`translate3d(${-Math.min(y*.2,kineticTrack.scrollWidth*.3)}px,0,0)`;
+        const romeRect=romeScene.getBoundingClientRect();
+        if(romeRect.bottom>0&&romeRect.top<window.innerHeight){
+          const romeProgress=Math.max(0,Math.min(1,(window.innerHeight-romeRect.top)/(window.innerHeight+romeRect.height)));
+          colosseum.style.setProperty('--rome-y',`${(romeProgress-.5)*-46}px`);
+          romeScene.style.setProperty('--rome-light-x',`${(romeProgress-.5)*32}%`);
+          romeScene.style.setProperty('--rome-light',`${.08+romeProgress*.14}`);
+        }
         galleryImages.forEach(image=>{
           const rect=image.parentElement.getBoundingClientRect();
           if(rect.bottom>0&&rect.top<window.innerHeight){
